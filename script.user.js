@@ -2,7 +2,7 @@
 // @name        Severa Calendar Presentation Mode
 // @namespace   WTF Design
 // @icon        data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230974b3'%3E%3Cpath d='m24 16v-2h-2v-11a3 3 0 0 0 -3-3h-14a3 3 0 0 0 -3 3v11h-2v2h11v4h-2a3 3 0 0 0 -3 3v1h2v-1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v1h2v-1a3 3 0 0 0 -3-3h-2v-4zm-20-13a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v11h-16z'/%3E%3C/svg%3E
-// @version     1.0.0
+// @version     1.0.1
 // @match       https://severa.visma.com/*
 // @grant       none
 // @author      WTF-Design
@@ -46,7 +46,7 @@ style.textContent = `
 	}
 	body:has(#presentButton:checked) {
 		anchor: --presentation-view;
-		div:has(> .calendarview) {
+		.content-main > :has(> .calendarview) {
 			position-anchor: --presentation-view;
 			position: absolute;
 			z-index: 11;
