@@ -2,7 +2,7 @@
 // @name        Severa Calendar Presentation Mode
 // @namespace   WTF Design
 // @icon        data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230974b3'%3E%3Cpath d='m24 16v-2h-2v-11a3 3 0 0 0 -3-3h-14a3 3 0 0 0 -3 3v11h-2v2h11v4h-2a3 3 0 0 0 -3 3v1h2v-1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v1h2v-1a3 3 0 0 0 -3-3h-2v-4zm-20-13a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v11h-16z'/%3E%3C/svg%3E
-// @version     1.1.0
+// @version     1.2.0
 // @match       https://severa.visma.com/*
 // @grant       none
 // @author      WTF-Design
@@ -33,6 +33,28 @@ let buttonWrapper;
 let debounce;
 
 style.textContent = `
+	body {
+		& > * {
+			transition: opacity .2s;
+		}
+		&:has(> #loader) > * {
+			opacity: 0;
+		}
+		&:has(#presentButton:checked) {
+			anchor: --presentation-view;
+			.content-main > :has(> .calendarview) {
+				position-anchor: --presentation-view;
+				position: absolute;
+				z-index: 11;
+				margin: 0;
+				inset: 0;
+				padding-block: 0;
+			}
+			.calendarview .dayentry-title {
+				font-size: 13px;
+			}
+		}
+	}
 	#presentButton {
 		appearance: none;
 		margin-inline: .2rem;
@@ -44,26 +66,14 @@ style.textContent = `
 			background-image: url("${GM.info.script.icon}");
 		}
 	}
-	body:has(#presentButton:checked) {
-		anchor: --presentation-view;
-		.content-main > :has(> .calendarview) {
-			position-anchor: --presentation-view;
-			position: absolute;
-			z-index: 11;
-			margin: 0;
-			inset: 0;
-		}
-		.calendarview .dayentry-title {
-			font-size: 13px;
-		}
-	}
 `;
 document.head.appendChild(style);
 
 Object.assign(presentButton, {
-	id: "presentButton",
 	type: "checkbox",
+	id: "presentButton",
 	classList: "btn only-icon",
+	checked: !!sessionStorage.getItem("calendarPresentationMode"),
 });
 
 const onChangeState = (state, title, url, isReplace) => {
@@ -77,6 +87,10 @@ const onChangeState = (state, title, url, isReplace) => {
 		if (calendarView = app.querySelector(`.content-main .calendarview`)) {
 			buttonWrapper = calendarView.querySelector(`.calendar-control-btn-wrapper`);
 			buttonWrapper.appendChild(presentButton);
+			presentButton.addEventListener("change", ev => {
+				if (ev.target.checked) sessionStorage.setItem("calendarPresentationMode", true);
+				else sessionStorage.removeItem("calendarPresentationMode");
+			});
 		}
 	}, 333);
 
