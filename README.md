@@ -7,10 +7,13 @@ Every Monday in our weekly kick-off meeting at
 [Severa](https://severa.com) calendars for the week for an overview on what
 everybody is working on. This thing adds a presentation mode button to that
 calendar view which hides all non-essentials and maximizes the calendar
-within the browser-window. It's also
+within the browser-window. This serves to eliminate wasted space on people's
+viewports and make the calendar more readable as well as having the benefit
+of hiding presenter-specific overdue item counts and lists in the page header
+and sidebar. It's also
 - an excercise in
 [CSS anchor-positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning)
-- simple, yet robust customization of an SPA
+- a simple, yet robust customization of an SPA
 - neat
 
 ## Requirements
