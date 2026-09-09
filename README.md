@@ -23,3 +23,13 @@ within the browser-window. It's also
 ## Aknowledgements
 - [Mir-Ismaili's location changeState proxy](https://stackoverflow.com/a/68418536)
 - [Uicons by Flaticon](https://www.flaticon.com/uicons)
+
+## Changelog
+- v1.1.0:
+  - Slight increase of calendar entry title font size while presenting
+    - We'll make this responsive/controllable yet
+  - Only insert button when it's not already there
+- v1.0.1: Fix calendar editing popup positioning
+  - It was also getting anchored to the window on account of containing a
+    `calendarview` class.
+- v1.0.0: Initial release
