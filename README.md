@@ -28,6 +28,9 @@ and sidebar. It's also
 - [Uicons by Flaticon](https://www.flaticon.com/uicons)
 
 ## Changelog
+- v1.3.0: Make presentation button icon themeable
+  - with `#presentButton::before` `background-color`
+- v1.2.0: Use sessionStorage to track state
 - v1.1.0:
   - Slight increase of calendar entry title font size while presenting
     - We'll make this responsive/controllable yet
